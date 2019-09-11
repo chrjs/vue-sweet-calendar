@@ -19,3 +19,9 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    publishRegistry: 'useFeed'
+    publishFeed: '020a6d1d-17e1-4864-8b4a-0e3ba66df28f'
