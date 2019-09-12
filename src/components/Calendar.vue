@@ -42,8 +42,9 @@
             `day-${day.getDate()},
             weekday-${day.getDay()}`,
             offDays.includes(day.getDay()) ? 'off-day' : null,
-            day.toDateString() === today.toDateString() ? 'today' : null
+            day.toDateString() === today.toDateString() ? 'today' : null,
             ]"
+			@click="selectDay(day)"
             :style="generateDayStyle(day)"
           >
             <span>{{ day.getDate() }}</span>
@@ -116,6 +117,12 @@ export default {
         weekdays.push(first)
       }
       return weekdays
+    },
+    selectDay (day) {
+      this.$emit('setDate', {
+        iso: day.toISOString(),
+        timeZoneOffset: day.getTimezoneOffset()
+      })
     },
     generateDayStyle (date) {
       let style = {}
