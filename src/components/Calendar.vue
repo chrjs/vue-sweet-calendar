@@ -28,7 +28,7 @@
         <div v-for="(day,index) in days"
              :key="index"
              class="day-container">
-          <div style="height: 28px;">
+
             <div class="before"
                  v-if="day"
                  :style="generateBeforeStyle(day)">&nbsp;</div>
@@ -42,12 +42,11 @@
             ]"
                  @click="selectDay(day)"
                  :style="generateDayStyle(day)">
-              <span>{{ day.getDate() }}</span><br />
+              <span>{{ day.getDate() }}</span>
             </div>
             <div class="after"
                  v-if="day"
                  :style="generateAfterStyle(day)">&nbsp;</div>
-          </div>
 
           <div style="
             position: absolute;
