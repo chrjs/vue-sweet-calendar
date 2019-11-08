@@ -143,7 +143,7 @@ export default {
     generateText (date) {
       for (let text of this.textDays) {
         if (date.isInRange(text.day, text.day, 'never')) {
-          return text.text;
+          return text.text
         }
       }
 
