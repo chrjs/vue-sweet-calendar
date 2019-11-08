@@ -141,13 +141,13 @@ export default {
       return style
     },
     generateText (date) {
-      let style = {}
       for (let text of this.textDays) {
         if (date.isInRange(text.day, text.day, 'never')) {
           return text.text;
         }
       }
-      return style
+
+      return '-'
     },
     generateBeforeStyle (date) {
       let style = {}
