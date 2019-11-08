@@ -25,37 +25,39 @@
         >
           {{ day[0] }}
         </div>
-        <div
-          v-for="(day,index) in days"
-          :key="index"
-          class="day-container"
-        >
-          <div
-            class="before"
-            v-if="day"
-            :style="generateBeforeStyle(day)"
-          >&nbsp;</div>
-          <div
-            v-if="day"
-            :class="[
+        <div v-for="(day,index) in days"
+             :key="index"
+             class="day-container">
+          <div style="height: 28px;">
+            <div class="before"
+                 v-if="day"
+                 :style="generateBeforeStyle(day)">&nbsp;</div>
+            <div v-if="day"
+                 :class="[
             'day',
             `day-${day.getDate()},
             weekday-${day.getDay()}`,
             offDays.includes(day.getDay()) ? 'off-day' : null,
             day.toDateString() === today.toDateString() ? 'today' : null,
             ]"
-			@click="selectDay(day)"
-            :style="generateDayStyle(day)"
-          >
-            <span>{{ day.getDate() }}</span>
+                 @click="selectDay(day)"
+                 :style="generateDayStyle(day)">
+              <span>{{ day.getDate() }}</span><br />
+            </div>
+            <div class="after"
+                 v-if="day"
+                 :style="generateAfterStyle(day)">&nbsp;</div>
           </div>
-          <div
-            class="after"
-            v-if="day"
-            :style="generateAfterStyle(day)"
-          >&nbsp;</div>
+
+          <div style="
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 10px;"><b>{{ generateText(day) }}</b></div>
+
         </div>
-      </div>
+        </div>
     </div>
   </div>
 </template>
@@ -138,6 +140,15 @@ export default {
       }
       return style
     },
+    generateText (date) {
+      let style = {}
+      for (let text of this.textDays) {
+        if (date.isInRange(text.day, text.day, 'never')) {
+          return text.text;
+        }
+      }
+      return style
+    },
     generateBeforeStyle (date) {
       let style = {}
       for (let event of this.events) {
@@ -182,6 +193,12 @@ export default {
       }
     },
     events: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    textDays: {
       type: Array,
       default () {
         return []
