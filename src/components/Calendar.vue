@@ -87,7 +87,7 @@
         const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
           "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
         ];
-        return monthNames[this.date.getMonth()];
+        return monthNames[this.date.getMonth() - 1];
       },
       selectedYear() {
         return this.date.getFullYear()
