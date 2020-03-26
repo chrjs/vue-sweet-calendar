@@ -47,7 +47,7 @@
             bottom: 0;
             text-align: center;
             width: 100%;
-            font-size: 10px;"><b>{{ generateText(day) }}</b></div>
+            font-size: 10px;"><span :style="generateColor(day)" v-html="generateText(day)"></span></div>
 
         </div>
       </div>
@@ -144,7 +144,17 @@
           }
         }
 
-        return '-'
+        return ''
+      },
+      generateColor(date) {
+        for (let text of this.textDays) {
+          if (date === null) continue;
+          if (date.isInRange(text.day, text.day, 'never')) {
+            return "color:" + text.color;
+          }
+        }
+
+        return ''
       },
       generateBeforeStyle(date) {
         let style = {}
