@@ -87,6 +87,7 @@
         const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
           "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
         ];
+        console.log("TEST PER AGGIONRNAMENTO CALENDAR")
         var t = this.date.getMonth();
         debugger;
         return monthNames[this.date.getMonth() -1];
