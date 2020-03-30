@@ -89,7 +89,7 @@
         ];
         var t = this.date.getMonth();
         debugger;
-        return monthNames[this.date.getMonth()];
+        return monthNames[this.date.getMonth() -1];
       },
       selectedYear() {
         return this.date.getFullYear()
