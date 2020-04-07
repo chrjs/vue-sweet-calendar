@@ -2,7 +2,7 @@
   <div id="sweetCalendar">
     <div class="container calendar">
       <div class="header">
-        <div class="left-arrow"
+        <div v-if="previousMonthMustBeVisible" class="left-arrow"
              @click="prevMonth">
           <span>&lt;</span>
         </div>
@@ -69,6 +69,15 @@
       }
     },
     computed: {
+      previousMonthMustBeVisible: function () {
+        var checkDate = new Date();
+        if (selectedYear == checkDate.getFullYear()) {
+          if (checkDate.getMonth() == this.selectedMonth - 1)
+            return false;
+        }
+
+        return true;
+      },
       days() {
         let emptyDays = Array((this.startWeekDayOfMonth - this.firstDayOfWeek + 7) % 7).fill(null)
         let days = Array(this.numberOfDays).fill().map((item, index) => new DateTime(this.selectedYear, this.selectedMonth, index + 1))
@@ -87,7 +96,8 @@
         const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
           "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
         ];
-        return monthNames[this.date.getMonth() -1];
+
+        return monthNames[this.date.getMonth() - 1];
       },
       selectedYear() {
         return this.date.getFullYear()
