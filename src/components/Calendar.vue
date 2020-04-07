@@ -2,9 +2,8 @@
   <div id="sweetCalendar">
     <div class="container calendar">
       <div class="header">
-        <div v-if="previousMonthMustBeVisible" class="left-arrow"
-             @click="prevMonth">
-          <span>&lt;</span>
+        <div class="left-arrow" @click="prevMonth">
+          <span v-if="previousMonthMustBeVisible" >&lt;</span>
         </div>
         <div class="month">{{ selectedMonthName }} {{ selectedYear }}</div>
         <div class="right-arrow"
@@ -105,6 +104,8 @@
     },
     methods: {
       prevMonth() {
+        if (!this.previousMonthMustBeVisible)
+          return;
         this.date = new DateTime(this.selectedYear, this.selectedMonth - 1, 1)
       },
       nextMonth() {
