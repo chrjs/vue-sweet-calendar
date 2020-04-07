@@ -71,7 +71,7 @@
     computed: {
       previousMonthMustBeVisible: function () {
         var checkDate = new Date();
-        if (selectedYear == checkDate.getFullYear()) {
+        if (this.selectedYear == checkDate.getFullYear()) {
           if (checkDate.getMonth() == this.selectedMonth - 1)
             return false;
         }
