@@ -10,13 +10,14 @@
       <Calendar
         :eventCategories="eventCategories"
         :events="events"
+        :locale="locale"
         ref="calendar"
       />
     </div>
     <div>
       <h2>Date Picker</h2>
       <input type="text" :value="selectedDate.iso">
-      <date-picker @setDate="setDate" :selectedDate="selectedDate.iso"/>
+      <date-picker @setDate="setDate" :locale="locale" :selectedDate="selectedDate.iso"/>
     </div>
   </div>
 </template>
@@ -32,6 +33,7 @@ export default {
   },
   data () {
     return {
+      locale: "it",
       eventCategories: [
         {
           id: 1,

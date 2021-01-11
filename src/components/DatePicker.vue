@@ -92,16 +92,28 @@ export default {
     nextMonth () {
       this.date = new DateTime(this.selectedYear, this.selectedMonth + 1, 1)
     },
-    generateWeekdayNames (firstDayOfWeek = 1) {
-      let weekdays = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-      ]
+    generateWeekdayNames(firstDayOfWeek = 1) {
+      var weekdays = [];
+
+      if (locale == "en") {
+        weekdays.push('Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday');
+      }
+      else {
+        weekdays.push('Domenica',
+          'Lunedì',
+          'Martedí',
+          'Mercoledí',
+          'Giovedì',
+          'Venerdì',
+          'Sabato');
+      }
+
       for (let i = 2; i <= firstDayOfWeek; i++) {
         let first = weekdays.shift()
         weekdays.push(first)
@@ -133,6 +145,10 @@ export default {
     firstDayOfWeek: {
       type: Number,
       default: 1 // 1: Sunday, 2: Monday, etc
+    },
+    locale: {
+      type: String,
+      default: "it"
     },
     offDays: {
       type: Array,

@@ -92,9 +92,16 @@
         return this.date.getMonth()
       },
       selectedMonthName() {
-        const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
-          "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-        ];
+        var monthNames = [];
+
+        if (locale == "en") {
+          monthNames.push("January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December");
+        }
+        else {
+          monthNames.push("Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre");
+        }
 
         return monthNames[this.date.getMonth() - 1];
       },
@@ -112,15 +119,27 @@
         this.date = new DateTime(this.selectedYear, this.selectedMonth + 1, 1)
       },
       generateWeekdayNames(firstDayOfWeek = 1) {
-        let weekdays = [
-          'Domenica',
-          'Lunedi',
-          'Martedi',
-          'Mercoledi',
-          'Giovedi',
-          'Venerdi',
-          'Sabato'
-        ]
+        var weekdays = [];
+
+        if (locale == "en") {
+          weekdays.push('Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday');
+        }
+        else {
+          weekdays.push('Domenica',
+            'Lunedì',
+            'Martedí',
+            'Mercoledí',
+            'Giovedì',
+            'Venerdì',
+            'Sabato');
+        }
+
         for (let i = 2; i <= firstDayOfWeek; i++) {
           let first = weekdays.shift()
           weekdays.push(first)
@@ -203,6 +222,10 @@
       firstDayOfWeek: {
         type: Number,
         default: 1 // 1: Sunday, 2: Monday, etc
+      },
+      locale: {
+        type: String,
+        default: "it"
       },
       eventCategories: {
         type: Array,
