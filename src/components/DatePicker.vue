@@ -95,7 +95,7 @@ export default {
     generateWeekdayNames(firstDayOfWeek = 1) {
       var weekdays = [];
 
-      if (locale == "en") {
+      if (this.locale == "en") {
         weekdays.push('Sunday',
           'Monday',
           'Tuesday',

@@ -94,7 +94,7 @@
       selectedMonthName() {
         var monthNames = [];
 
-        if (locale == "en") {
+        if (this.locale == "en") {
           monthNames.push("January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December");
         }
@@ -121,7 +121,7 @@
       generateWeekdayNames(firstDayOfWeek = 1) {
         var weekdays = [];
 
-        if (locale == "en") {
+        if (this.locale == "en") {
           weekdays.push('Sunday',
             'Monday',
             'Tuesday',
